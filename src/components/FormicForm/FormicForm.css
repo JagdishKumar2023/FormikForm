@@ -1,0 +1,94 @@
+/* Form styling with a solid background */
+.mainContainer {
+  border: 2px solid red;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.signupForm {
+  padding: 20px;
+  border-radius: 10px;
+  background-color: #ffffff; /* White background for form */
+  height: 600px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+}
+
+/* Heading style (optional if you want to add one) */
+.signupForm h1 {
+  padding: 20px;
+  color: #333;
+  font-size: 24px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+/* Label styling */
+.signupForm label {
+  font-size: 14px;
+  color: #333;
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+/* Input styling with a clean look */
+.signupForm .fromInput,
+.signupForm .password {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 16px;
+  background-color: #f7f7f7;
+  color: #333;
+}
+
+/* Border color on focus */
+.signupForm .fromInput:focus,
+.signupForm .password:focus {
+  border-color: #4a90e2;
+  outline: none;
+  background-color: #fff;
+}
+
+/* Submit button styling */
+.signupForm button {
+  width: 100%;
+  padding: 12px;
+  font-size: 16px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  background-color: #4a90e2; /* Blue background */
+  color: #fff;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+/* Button hover effect */
+.signupForm button:hover {
+  background-color: #357abd; /* Darker blue on hover */
+}
+
+/* Paragraph and link styling */
+.signupForm .paragraph {
+  margin-top: 10px;
+  text-align: center;
+  font-size: 14px;
+}
+
+.signupForm .paragraph a {
+  color: #4a90e2;
+  text-decoration: none;
+}
+
+.signupForm .paragraph a:hover {
+  text-decoration: underline;
+}
+
+.paragraph {
+  color: red;
+}
