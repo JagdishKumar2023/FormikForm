@@ -1,5 +1,7 @@
 import "./FormicForm.css";
-import { useFormik } from "formik";
+import { Field, Form, Formik } from "formik";
+import { signupSchema } from "../../Schemas"; // Adjust the import paths as necessary
+import { Link } from "react-router-dom"; // Import Link
 
 const initialValues = {
   name: "",
@@ -10,79 +12,74 @@ const initialValues = {
 };
 
 const FormicForm = () => {
-  // Correctly destructure the returned object from useFormik
-  const { values, handleBlur, handleChange, handleSubmit } = useFormik({
-    initialValues,
-    onSubmit: (values) => {
-      console.log(values);
-    },
-  });
+  const onSubmit = (values, actions) => {
+    console.log(values);
+    actions.resetForm();
+  };
 
   return (
     <div className="mainContainer">
-      <form className="signupForm" onSubmit={handleSubmit}>
-        <h1>Sign Up</h1>
-        <label htmlFor="name">Name</label>
-        <input
-          className="fromInput"
-          type="text"
-          value={values.name}
-          name="name"
-          id="name"
-          onChange={handleChange}
-          onBlur={handleBlur}
-        />
+      <Formik
+        initialValues={initialValues}
+        validationSchema={signupSchema}
+        onSubmit={onSubmit}
+      >
+        {({ errors, touched }) => (
+          <Form className="signupForm">
+            <h1>Sign Up</h1>
+            <label htmlFor="name">Name</label>
+            <Field type="text" name="name" />
+            <div className="errorContainer">
+              {errors.name && touched.name && (
+                <p className="formError">{errors.name}</p>
+              )}
+            </div>
 
-        <label htmlFor="email">Email</label>
-        <input
-          className="fromInput"
-          type="email"
-          name="email"
-          value={values.email}
-          id="email"
-          onChange={handleChange}
-          onBlur={handleBlur}
-        />
+            <label htmlFor="email">Email</label>
+            <Field type="email" name="email" />
+            <div className="errorContainer">
+              {errors.email && touched.email && (
+                <p className="formError">{errors.email}</p>
+              )}
+            </div>
 
-        <label htmlFor="password">Password</label>
-        <input
-          className="fromInput"
-          type="password"
-          name="password"
-          value={values.password}
-          id="password"
-          onChange={handleChange}
-          onBlur={handleBlur}
-        />
+            <label htmlFor="password">Password</label>
+            <Field type="password" name="password" />
+            <div className="errorContainer">
+              {errors.password && touched.password && (
+                <p className="formError">{errors.password}</p>
+              )}
+            </div>
 
-        <label htmlFor="cpassword">Confirm Password</label>
-        <input
-          className="fromInput"
-          type="password"
-          name="cpassword"
-          value={values.cpassword}
-          id="cpassword"
-          onChange={handleChange}
-          onBlur={handleBlur}
-        />
+            <label htmlFor="cpassword">Confirm Password</label>
+            <Field type="password" name="cpassword" />
+            <div className="errorContainer">
+              {errors.cpassword && touched.cpassword && (
+                <p className="formError">{errors.cpassword}</p>
+              )}
+            </div>
 
-        <label htmlFor="gender">Gender</label>
-        <input
-          className="fromInput"
-          type="text"
-          name="gender"
-          id="gender"
-          value={values.gender}
-          onChange={handleChange}
-          onBlur={handleBlur}
-        />
+            <label htmlFor="gender">Gender</label>
+            <Field as="select" name="gender">
+              <option value="" label="Select gender" />
+              <option value="male" label="Male" />
+              <option value="female" label="Female" />
+              <option value="other" label="Other" />
+            </Field>
 
-        <button type="submit">Submit</button>
+            <div className="errorContainer">
+              {errors.gender && touched.gender && (
+                <p className="formError">{errors.gender}</p>
+              )}
+            </div>
 
-        <p className="paragraph">
-          Already have an account? <a href="">Login</a>
-        </p>
-      </form>
+            <button type="submit">Submit</button>
+            <p className="paragraph">
+              Already have an account? <Link to="/login">Login</Link>
+            </p>
+          </Form>
+        )}
+      </Formik>
     </div>
   );
 };
